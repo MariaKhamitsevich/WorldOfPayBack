@@ -54,6 +54,8 @@ struct PBMainHostingView: View {
     }
 }
 
-#Preview {
-    PBMainHostingView()
+struct PBMainHostingView_Previews: PreviewProvider {
+    static var previews: some View {
+        PBMainHostingView()
+    }
 }

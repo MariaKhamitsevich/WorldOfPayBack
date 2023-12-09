@@ -7,8 +7,9 @@
 
 import Foundation
 
-protocol ApiManagering {
-
+protocol ApiManagering<API> {
+    associatedtype API: ApiRequest
+    func makeRequest<T: Decodable>(endpoint: API) async throws -> T
 }
 
 final class ApiManager<API: ApiRequest>: ApiManagering {

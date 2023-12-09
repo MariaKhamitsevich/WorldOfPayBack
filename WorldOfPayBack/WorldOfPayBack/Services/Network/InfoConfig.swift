@@ -8,10 +8,10 @@
 import Foundation
 
 public enum InfoConfig {
-    static let defaultEnvironment = "DEV"
+    static let defaultEnvironment = Constants.dev
 
     public static func buildEnv() -> String {
-        valueObject(forKey: "buildEnvironment") ?? defaultEnvironment
+        valueObject(forKey: Constants.buildEnvironment) ?? defaultEnvironment
     }
 }
 
@@ -33,11 +33,21 @@ private extension InfoConfig {
     }
 
     static func getConfigDictionary(bundle: Bundle) -> NSDictionary? {
-        guard let path = bundle.path(forResource: "Info", ofType: "plist"),
+        guard let path = bundle.path(forResource: Constants.info, ofType: Constants.infoType),
               let dictionary = NSDictionary(contentsOfFile: path)
         else {
             return nil
         }
         return dictionary
+    }
+}
+
+//MARK: - Constants
+private extension InfoConfig {
+    enum Constants {
+        static let buildEnvironment = "buildEnvironment"
+        static let dev = "DEV"
+        static let info = "Info"
+        static let infoType = "plist"
     }
 }

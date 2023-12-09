@@ -22,6 +22,7 @@
 		4C6F51D42B247DA50087DCFB /* InfoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51D32B247DA50087DCFB /* InfoConfig.swift */; };
 		4C6F51D72B2481220087DCFB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F51D62B2481220087DCFB /* Info.plist */; };
 		4C6F51D92B24830C0087DCFB /* BuildEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51D82B24830C0087DCFB /* BuildEnvironment.swift */; };
+		4C6F51DB2B2493AC0087DCFB /* PBNetworkMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51DA2B2493AC0087DCFB /* PBNetworkMonitorService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		4C6F51D32B247DA50087DCFB /* InfoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoConfig.swift; sourceTree = "<group>"; };
 		4C6F51D62B2481220087DCFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C6F51D82B24830C0087DCFB /* BuildEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildEnvironment.swift; sourceTree = "<group>"; };
+		4C6F51DA2B2493AC0087DCFB /* PBNetworkMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBNetworkMonitorService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				4C6F51C72B24772F0087DCFB /* URLConfigurator.swift */,
 				4C6F51D32B247DA50087DCFB /* InfoConfig.swift */,
 				4C6F51D82B24830C0087DCFB /* BuildEnvironment.swift */,
+				4C6F51DA2B2493AC0087DCFB /* PBNetworkMonitorService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				4C6F51D42B247DA50087DCFB /* InfoConfig.swift in Sources */,
 				4C6F51CD2B2477A10087DCFB /* PBTransactionsApiRequest.swift in Sources */,
 				4C6F51D22B247A510087DCFB /* URLQueryItem+Extension.swift in Sources */,
+				4C6F51DB2B2493AC0087DCFB /* PBNetworkMonitorService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

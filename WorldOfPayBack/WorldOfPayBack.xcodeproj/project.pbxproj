@@ -12,6 +12,16 @@
 		4C6F51B52B2462B90087DCFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F51B42B2462B90087DCFB /* Assets.xcassets */; };
 		4C6F51B92B2462B90087DCFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F51B82B2462B90087DCFB /* Preview Assets.xcassets */; };
 		4C6F51C12B2463110087DCFB /* PBTabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51C02B2463110087DCFB /* PBTabItemView.swift */; };
+		4C6F51C42B24770C0087DCFB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51C32B24770C0087DCFB /* NetworkManager.swift */; };
+		4C6F51C62B2477230087DCFB /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51C52B2477230087DCFB /* ApiManager.swift */; };
+		4C6F51C82B24772F0087DCFB /* URLConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51C72B24772F0087DCFB /* URLConfigurator.swift */; };
+		4C6F51CA2B2477390087DCFB /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51C92B2477390087DCFB /* ApiRequest.swift */; };
+		4C6F51CD2B2477A10087DCFB /* PBTransactionsApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51CC2B2477A10087DCFB /* PBTransactionsApiRequest.swift */; };
+		4C6F51D02B247A2D0087DCFB /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51CF2B247A2D0087DCFB /* Array+Extension.swift */; };
+		4C6F51D22B247A510087DCFB /* URLQueryItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51D12B247A510087DCFB /* URLQueryItem+Extension.swift */; };
+		4C6F51D42B247DA50087DCFB /* InfoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51D32B247DA50087DCFB /* InfoConfig.swift */; };
+		4C6F51D72B2481220087DCFB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F51D62B2481220087DCFB /* Info.plist */; };
+		4C6F51D92B24830C0087DCFB /* BuildEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51D82B24830C0087DCFB /* BuildEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +32,16 @@
 		4C6F51B62B2462B90087DCFB /* WorldOfPayBack.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WorldOfPayBack.entitlements; sourceTree = "<group>"; };
 		4C6F51B82B2462B90087DCFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4C6F51C02B2463110087DCFB /* PBTabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBTabItemView.swift; sourceTree = "<group>"; };
+		4C6F51C32B24770C0087DCFB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4C6F51C52B2477230087DCFB /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		4C6F51C72B24772F0087DCFB /* URLConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfigurator.swift; sourceTree = "<group>"; };
+		4C6F51C92B2477390087DCFB /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		4C6F51CC2B2477A10087DCFB /* PBTransactionsApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBTransactionsApiRequest.swift; sourceTree = "<group>"; };
+		4C6F51CF2B247A2D0087DCFB /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		4C6F51D12B247A510087DCFB /* URLQueryItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLQueryItem+Extension.swift"; sourceTree = "<group>"; };
+		4C6F51D32B247DA50087DCFB /* InfoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoConfig.swift; sourceTree = "<group>"; };
+		4C6F51D62B2481220087DCFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C6F51D82B24830C0087DCFB /* BuildEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C4AD0D42B2469AD0092EBA3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4C6F51C22B246A8D0087DCFB /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4C6F51A42B2462B90087DCFB = {
 			isa = PBXGroup;
 			children = (
@@ -54,11 +82,12 @@
 		4C6F51AF2B2462B90087DCFB /* WorldOfPayBack */ = {
 			isa = PBXGroup;
 			children = (
+				4C6F51CE2B247A190087DCFB /* Extensions */,
+				4C4AD0D42B2469AD0092EBA3 /* Services */,
 				4C6F51BF2B2462EF0087DCFB /* HostingView */,
+				4C6F51D52B2480590087DCFB /* Resources */,
 				4C6F51B02B2462B90087DCFB /* WorldOfPayBackApp.swift */,
-				4C6F51B42B2462B90087DCFB /* Assets.xcassets */,
 				4C6F51B62B2462B90087DCFB /* WorldOfPayBack.entitlements */,
-				4C6F51B72B2462B90087DCFB /* Preview Content */,
 			);
 			path = WorldOfPayBack;
 			sourceTree = "<group>";
@@ -78,6 +107,47 @@
 				4C6F51C02B2463110087DCFB /* PBTabItemView.swift */,
 			);
 			path = HostingView;
+			sourceTree = "<group>";
+		};
+		4C6F51C22B246A8D0087DCFB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4C6F51CB2B2477510087DCFB /* ApiRequests */,
+				4C6F51C32B24770C0087DCFB /* NetworkManager.swift */,
+				4C6F51C52B2477230087DCFB /* ApiManager.swift */,
+				4C6F51C72B24772F0087DCFB /* URLConfigurator.swift */,
+				4C6F51D32B247DA50087DCFB /* InfoConfig.swift */,
+				4C6F51D82B24830C0087DCFB /* BuildEnvironment.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4C6F51CB2B2477510087DCFB /* ApiRequests */ = {
+			isa = PBXGroup;
+			children = (
+				4C6F51C92B2477390087DCFB /* ApiRequest.swift */,
+				4C6F51CC2B2477A10087DCFB /* PBTransactionsApiRequest.swift */,
+			);
+			path = ApiRequests;
+			sourceTree = "<group>";
+		};
+		4C6F51CE2B247A190087DCFB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C6F51CF2B247A2D0087DCFB /* Array+Extension.swift */,
+				4C6F51D12B247A510087DCFB /* URLQueryItem+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4C6F51D52B2480590087DCFB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C6F51D62B2481220087DCFB /* Info.plist */,
+				4C6F51B42B2462B90087DCFB /* Assets.xcassets */,
+				4C6F51B72B2462B90087DCFB /* Preview Content */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +210,7 @@
 			files = (
 				4C6F51B92B2462B90087DCFB /* Preview Assets.xcassets in Resources */,
 				4C6F51B52B2462B90087DCFB /* Assets.xcassets in Resources */,
+				4C6F51D72B2481220087DCFB /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +223,16 @@
 			files = (
 				4C6F51B32B2462B90087DCFB /* PBMainHostingView.swift in Sources */,
 				4C6F51C12B2463110087DCFB /* PBTabItemView.swift in Sources */,
+				4C6F51D92B24830C0087DCFB /* BuildEnvironment.swift in Sources */,
+				4C6F51C82B24772F0087DCFB /* URLConfigurator.swift in Sources */,
+				4C6F51D02B247A2D0087DCFB /* Array+Extension.swift in Sources */,
+				4C6F51C62B2477230087DCFB /* ApiManager.swift in Sources */,
+				4C6F51C42B24770C0087DCFB /* NetworkManager.swift in Sources */,
+				4C6F51CA2B2477390087DCFB /* ApiRequest.swift in Sources */,
 				4C6F51B12B2462B90087DCFB /* WorldOfPayBackApp.swift in Sources */,
+				4C6F51D42B247DA50087DCFB /* InfoConfig.swift in Sources */,
+				4C6F51CD2B2477A10087DCFB /* PBTransactionsApiRequest.swift in Sources */,
+				4C6F51D22B247A510087DCFB /* URLQueryItem+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

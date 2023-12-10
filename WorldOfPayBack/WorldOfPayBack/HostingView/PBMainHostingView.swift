@@ -34,7 +34,7 @@ struct PBMainHostingView: View {
                 .tag(PBTabItemView.PBTabItem.home)
 
 
-            Text("Transactions History")
+            TransactionsHistoryPage(viewModel: TransactionsHistoryPageViewModel())
                 .id(history)
                 .tabItem {
                     PBTabItemView(tabItem: .history)

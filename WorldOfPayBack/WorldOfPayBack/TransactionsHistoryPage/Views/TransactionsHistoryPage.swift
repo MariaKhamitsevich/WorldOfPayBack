@@ -16,8 +16,37 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager>: View 
 
     var body: some View {
         VStack {
-            NavigationBar(title: Constants.transactionHistory, shouldShowButton: false)
+            navigationBar
+            transactionsList
         }
+        .task {
+            await runTasks()
+        }
+    }
+
+    private func runTasks() async {
+        await withTaskGroup(of: Void.self) { group in
+            group.addTask {
+                await viewModel.fetchTransactions()
+            }
+        }
+    }
+}
+
+// MARK: - Views
+private extension TransactionsHistoryPage {
+    var navigationBar: some View {
+        NavigationBar(title: Constants.transactionHistory, shouldShowButton: false)
+    }
+
+    var transactionsList: some View {
+        List(viewModel.transactions, id: \.bookingDate) { transaction in
+            transactionCardCellView(model: transaction)
+        }
+    }
+
+    func transactionCardCellView(model: TransactionCardModel) -> some View {
+        TransactionCardCell(viewModel: TransactionCardViewModel(transactionCardModel: model))
     }
 }
 

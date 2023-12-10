@@ -9,6 +9,7 @@ import Foundation
 
 protocol TransactionsHistoryPageManager: ObservableObject {
     var transactions: [TransactionCardModel] { get }
+    func fetchTransactions() async
 }
 
 final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
@@ -17,10 +18,7 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
     @Published private(set) var transactions: [TransactionCardModel] = []
 
     init(
-        apiManager: any ApiManagering<PBTransactionsApiRequest> = ApiManager(
-            networkManger: NetworkManager(),
-            urlConfigurator: PBURLConfigurator()
-        )
+        apiManager: any ApiManagering<PBTransactionsApiRequest> = MockApiManager() // TODO: replace mock by ApiManager(networkManger: NetworkManager(),  urlConfigurator: PBURLConfigurator())
     ) {
         self.apiManager = apiManager
     }

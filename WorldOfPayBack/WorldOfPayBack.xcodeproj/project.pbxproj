@@ -14,6 +14,10 @@
 		4C4A7ECC2B25C3A6005AA0B3 /* TransactionCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7ECB2B25C3A6005AA0B3 /* TransactionCardCell.swift */; };
 		4C4A7ECE2B25CBC6005AA0B3 /* TransactionCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7ECD2B25CBC6005AA0B3 /* TransactionCardViewModel.swift */; };
 		4C4A7ED02B25D6AD005AA0B3 /* MockApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7ECF2B25D6AD005AA0B3 /* MockApiManager.swift */; };
+		4C4A7ED22B25E833005AA0B3 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7ED12B25E833005AA0B3 /* FilterView.swift */; };
+		4C4A7ED42B261E62005AA0B3 /* FilterOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7ED32B261E62005AA0B3 /* FilterOptionsView.swift */; };
+		4C4A7ED62B26221B005AA0B3 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7ED52B26221B005AA0B3 /* Int+Extension.swift */; };
+		4C4A7ED82B26223E005AA0B3 /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7ED72B26223E005AA0B3 /* FilterType.swift */; };
 		4C6F51B12B2462B90087DCFB /* WorldOfPayBackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51B02B2462B90087DCFB /* WorldOfPayBackApp.swift */; };
 		4C6F51B32B2462B90087DCFB /* PBMainHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51B22B2462B90087DCFB /* PBMainHostingView.swift */; };
 		4C6F51B52B2462B90087DCFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F51B42B2462B90087DCFB /* Assets.xcassets */; };
@@ -44,6 +48,10 @@
 		4C4A7ECB2B25C3A6005AA0B3 /* TransactionCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCardCell.swift; sourceTree = "<group>"; };
 		4C4A7ECD2B25CBC6005AA0B3 /* TransactionCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCardViewModel.swift; sourceTree = "<group>"; };
 		4C4A7ECF2B25D6AD005AA0B3 /* MockApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiManager.swift; sourceTree = "<group>"; };
+		4C4A7ED12B25E833005AA0B3 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		4C4A7ED32B261E62005AA0B3 /* FilterOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionsView.swift; sourceTree = "<group>"; };
+		4C4A7ED52B26221B005AA0B3 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		4C4A7ED72B26223E005AA0B3 /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
 		4C6F51AD2B2462B90087DCFB /* WorldOfPayBack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldOfPayBack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C6F51B02B2462B90087DCFB /* WorldOfPayBackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldOfPayBackApp.swift; sourceTree = "<group>"; };
 		4C6F51B22B2462B90087DCFB /* PBMainHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBMainHostingView.swift; sourceTree = "<group>"; };
@@ -199,6 +207,7 @@
 				4C6F51CF2B247A2D0087DCFB /* Array+Extension.swift */,
 				4C6F51D12B247A510087DCFB /* URLQueryItem+Extension.swift */,
 				4C4A7EC22B24CE3E005AA0B3 /* Bundle+Extension.swift */,
+				4C4A7ED52B26221B005AA0B3 /* Int+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				4C6F51E22B24C4F00087DCFB /* NavigationBar.swift */,
+				4C4A7ED32B261E62005AA0B3 /* FilterOptionsView.swift */,
 			);
 			path = ReusableViews;
 			sourceTree = "<group>";
@@ -237,6 +247,7 @@
 			children = (
 				4C4A7ECA2B25C395005AA0B3 /* Cells */,
 				4C6F51DD2B24BE680087DCFB /* TransactionsHistoryPage.swift */,
+				4C4A7ED12B25E833005AA0B3 /* FilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				4C6F51E92B24C8440087DCFB /* TransactionCardModel.swift */,
+				4C4A7ED72B26223E005AA0B3 /* FilterType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,8 +346,11 @@
 				4C4A7EC32B24CE3E005AA0B3 /* Bundle+Extension.swift in Sources */,
 				4C6F51C12B2463110087DCFB /* PBTabItemView.swift in Sources */,
 				4C6F51D92B24830C0087DCFB /* BuildEnvironment.swift in Sources */,
+				4C4A7ED22B25E833005AA0B3 /* FilterView.swift in Sources */,
 				4C6F51C82B24772F0087DCFB /* URLConfigurator.swift in Sources */,
+				4C4A7ED42B261E62005AA0B3 /* FilterOptionsView.swift in Sources */,
 				4C6F51EA2B24C8440087DCFB /* TransactionCardModel.swift in Sources */,
+				4C4A7ED82B26223E005AA0B3 /* FilterType.swift in Sources */,
 				4C6F51D02B247A2D0087DCFB /* Array+Extension.swift in Sources */,
 				4C6F51E72B24C6490087DCFB /* TransactionsHistoryPageViewModel.swift in Sources */,
 				4C6F51E32B24C4F00087DCFB /* NavigationBar.swift in Sources */,
@@ -349,6 +364,7 @@
 				4C6F51CA2B2477390087DCFB /* ApiRequest.swift in Sources */,
 				4C6F51B12B2462B90087DCFB /* WorldOfPayBackApp.swift in Sources */,
 				4C6F51D42B247DA50087DCFB /* InfoConfig.swift in Sources */,
+				4C4A7ED62B26221B005AA0B3 /* Int+Extension.swift in Sources */,
 				4C6F51CD2B2477A10087DCFB /* PBTransactionsApiRequest.swift in Sources */,
 				4C4A7ECC2B25C3A6005AA0B3 /* TransactionCardCell.swift in Sources */,
 				4C6F51D22B247A510087DCFB /* URLQueryItem+Extension.swift in Sources */,

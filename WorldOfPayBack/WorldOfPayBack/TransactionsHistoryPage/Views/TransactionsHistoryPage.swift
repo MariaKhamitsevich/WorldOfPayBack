@@ -17,6 +17,7 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager>: View 
     var body: some View {
         VStack {
             navigationBar
+            filterView
             transactionsList
         }
         .task {
@@ -39,10 +40,24 @@ private extension TransactionsHistoryPage {
         NavigationBar(title: Constants.transactionHistory, shouldShowButton: false)
     }
 
+    var filterView: some View {
+        FilterView(availableCategories: viewModel.availableCategories)
+            .onFilterTap {
+                viewModel.filterTransactions(filterRule: $0)
+            }
+            .onCategoryTap {
+                viewModel.filterTransactions(filterRule: .category(number: $0))
+            }
+    }
+
     var transactionsList: some View {
-        List(viewModel.transactions, id: \.bookingDate) { transaction in
+        List(viewModel.filteredTransactions, id: \.bookingDate) { transaction in
             transactionCardCellView(model: transaction)
+                .listRowSeparator(.hidden)
+                .listRowInsets(.init(top: 2, leading: 8, bottom: 2, trailing: 8))
         }
+        
+        .listStyle(.plain)
     }
 
     func transactionCardCellView(model: TransactionCardModel) -> some View {

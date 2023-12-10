@@ -11,5 +11,6 @@ struct TransactionCardModel {
     let bookingDate: String
     let partnerName: String
     let transactioDescription: String
+    let category: Int
     let value: TransactionValue
 }

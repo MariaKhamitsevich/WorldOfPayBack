@@ -15,41 +15,42 @@ struct TransactionCardCell: View {
     }
 
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 4) {
             HStack {
                 Text(viewModel.transactionCardModel.bookingDate)
                     .italic()
-                    .font(.system(size: 18))
+                    .font(.system(size: 14))
 
                 Spacer()
 
                 Text(viewModel.transactionValueText)
                     .bold()
-                    .font(.system(size: 20))
+                    .font(.system(size: 18))
             }
 
             HStack {
                 VStack(alignment: .leading) {
                     Text(viewModel.transactionCardModel.partnerName)
                         .bold()
-                        .font(.system(size: 20))
+                        .font(.system(size: 16))
                     Text(viewModel.transactionCardModel.transactioDescription)
                         .multilineTextAlignment(.leading)
                         .lineLimit(1)
-                        .font(.system(size: 16))
+                        .font(.system(size: 12))
                 }
                 Spacer()
             }
         }
-        .padding()
+        .padding(.horizontal, 8)
+        .padding(.vertical, 6)
         .background {
             Color.blue.opacity(0.4)
         }
         .overlay(
-            RoundedRectangle(cornerRadius: 24.0)
+            RoundedRectangle(cornerRadius: 8.0)
                 .stroke(Color.blue.opacity(0.7), lineWidth: 2.0)
         )
-        .cornerRadius(24.0)
+        .cornerRadius(8.0)
     }
 }
 
@@ -62,6 +63,7 @@ struct TransactionCardCell_Previews: PreviewProvider {
                         bookingDate: "Feb 4, 2022, 10:59 AM",
                         partnerName: "Partner name",
                         transactioDescription: "Transaction description",
+                        category: 1,
                         value: .init(
                             amount: 10,
                             currency: .pbp

@@ -31,7 +31,8 @@ struct NavigationBar: View {
     var body: some View {
         VStack {
             Text(title)
-                .font(.system(size: 18))
+                .italic()
+                .font(.system(size: 20))
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .padding(.horizontal, 20)

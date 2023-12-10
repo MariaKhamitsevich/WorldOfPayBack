@@ -39,6 +39,10 @@ struct TransactionDetail: Decodable {
 struct TransactionValue: Decodable {
     let amount: Int
     let currency: Currency
+
+    var transactionValueText: String {
+        "\(amount) \(currency.rawValue.uppercased())"
+    }
 }
 
 enum Currency: String, Decodable, CaseIterable {

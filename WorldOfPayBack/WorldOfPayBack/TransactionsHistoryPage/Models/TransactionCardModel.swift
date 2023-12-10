@@ -8,5 +8,8 @@
 import Foundation
 
 struct TransactionCardModel {
-
+    let bookingDate: String
+    let partnerName: String
+    let transactioDescription: String
+    let value: TransactionValue
 }

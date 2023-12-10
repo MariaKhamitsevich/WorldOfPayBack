@@ -23,7 +23,8 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager>: View 
 
 private extension TransactionsHistoryPage {
     enum Constants {
-        static var transactionHistory: String { "Transactions History"
+        static var transactionHistory: String {
+            "Transactions History"
         }
     }
 }

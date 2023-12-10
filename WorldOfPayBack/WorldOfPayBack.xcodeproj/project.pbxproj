@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C4A7EC12B24CDE2005AA0B3 /* PBTransactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C4A7EC02B24CDE2005AA0B3 /* PBTransactions.json */; };
+		4C4A7EC32B24CE3E005AA0B3 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7EC22B24CE3E005AA0B3 /* Bundle+Extension.swift */; };
+		4C4A7EC62B24CEE7005AA0B3 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7EC52B24CEE7005AA0B3 /* TransactionModel.swift */; };
+		4C4A7EC92B25BBEC005AA0B3 /* UniversalFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A7EC82B25BBEC005AA0B3 /* UniversalFormatter.swift */; };
 		4C6F51B12B2462B90087DCFB /* WorldOfPayBackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51B02B2462B90087DCFB /* WorldOfPayBackApp.swift */; };
 		4C6F51B32B2462B90087DCFB /* PBMainHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51B22B2462B90087DCFB /* PBMainHostingView.swift */; };
 		4C6F51B52B2462B90087DCFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F51B42B2462B90087DCFB /* Assets.xcassets */; };
@@ -30,6 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C4A7EC02B24CDE2005AA0B3 /* PBTransactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBTransactions.json; sourceTree = "<group>"; };
+		4C4A7EC22B24CE3E005AA0B3 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		4C4A7EC52B24CEE7005AA0B3 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		4C4A7EC82B25BBEC005AA0B3 /* UniversalFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalFormatter.swift; sourceTree = "<group>"; };
 		4C6F51AD2B2462B90087DCFB /* WorldOfPayBack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldOfPayBack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C6F51B02B2462B90087DCFB /* WorldOfPayBackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldOfPayBackApp.swift; sourceTree = "<group>"; };
 		4C6F51B22B2462B90087DCFB /* PBMainHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBMainHostingView.swift; sourceTree = "<group>"; };
@@ -65,6 +73,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C4A7EBF2B24CDBC005AA0B3 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				4C4A7EC02B24CDE2005AA0B3 /* PBTransactions.json */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
+		4C4A7EC42B24CED4005AA0B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C4A7EC52B24CEE7005AA0B3 /* TransactionModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4C4A7EC72B25BBC8005AA0B3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4C4A7EC82B25BBEC005AA0B3 /* UniversalFormatter.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		4C4AD0D42B2469AD0092EBA3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,11 +124,12 @@
 		4C6F51AF2B2462B90087DCFB /* WorldOfPayBack */ = {
 			isa = PBXGroup;
 			children = (
+				4C6F51BF2B2462EF0087DCFB /* HostingView */,
 				4C6F51DC2B24BE3F0087DCFB /* TransactionsHistoryPage */,
 				4C6F51CE2B247A190087DCFB /* Extensions */,
 				4C6F51E12B24C4C40087DCFB /* ReusableViews */,
 				4C4AD0D42B2469AD0092EBA3 /* Services */,
-				4C6F51BF2B2462EF0087DCFB /* HostingView */,
+				4C4A7EC72B25BBC8005AA0B3 /* Helpers */,
 				4C6F51D52B2480590087DCFB /* Resources */,
 				4C6F51B02B2462B90087DCFB /* WorldOfPayBackApp.swift */,
 				4C6F51B62B2462B90087DCFB /* WorldOfPayBack.entitlements */,
@@ -124,6 +157,7 @@
 		4C6F51C22B246A8D0087DCFB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4C4A7EC42B24CED4005AA0B3 /* Models */,
 				4C6F51CB2B2477510087DCFB /* ApiRequests */,
 				4C6F51C32B24770C0087DCFB /* NetworkManager.swift */,
 				4C6F51C52B2477230087DCFB /* ApiManager.swift */,
@@ -149,6 +183,7 @@
 			children = (
 				4C6F51CF2B247A2D0087DCFB /* Array+Extension.swift */,
 				4C6F51D12B247A510087DCFB /* URLQueryItem+Extension.swift */,
+				4C4A7EC22B24CE3E005AA0B3 /* Bundle+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -156,6 +191,7 @@
 		4C6F51D52B2480590087DCFB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C4A7EBF2B24CDBC005AA0B3 /* MockData */,
 				4C6F51DF2B24C4650087DCFB /* PBInfo.plist */,
 				4C6F51B42B2462B90087DCFB /* Assets.xcassets */,
 				4C6F51B72B2462B90087DCFB /* Preview Content */,
@@ -265,6 +301,7 @@
 			files = (
 				4C6F51E02B24C4650087DCFB /* PBInfo.plist in Resources */,
 				4C6F51B92B2462B90087DCFB /* Preview Assets.xcassets in Resources */,
+				4C4A7EC12B24CDE2005AA0B3 /* PBTransactions.json in Resources */,
 				4C6F51B52B2462B90087DCFB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C6F51B32B2462B90087DCFB /* PBMainHostingView.swift in Sources */,
+				4C4A7EC32B24CE3E005AA0B3 /* Bundle+Extension.swift in Sources */,
 				4C6F51C12B2463110087DCFB /* PBTabItemView.swift in Sources */,
 				4C6F51D92B24830C0087DCFB /* BuildEnvironment.swift in Sources */,
 				4C6F51C82B24772F0087DCFB /* URLConfigurator.swift in Sources */,
@@ -285,7 +323,9 @@
 				4C6F51E72B24C6490087DCFB /* TransactionsHistoryPageViewModel.swift in Sources */,
 				4C6F51E32B24C4F00087DCFB /* NavigationBar.swift in Sources */,
 				4C6F51C62B2477230087DCFB /* ApiManager.swift in Sources */,
+				4C4A7EC62B24CEE7005AA0B3 /* TransactionModel.swift in Sources */,
 				4C6F51DE2B24BE680087DCFB /* TransactionsHistoryPage.swift in Sources */,
+				4C4A7EC92B25BBEC005AA0B3 /* UniversalFormatter.swift in Sources */,
 				4C6F51C42B24770C0087DCFB /* NetworkManager.swift in Sources */,
 				4C6F51CA2B2477390087DCFB /* ApiRequest.swift in Sources */,
 				4C6F51B12B2462B90087DCFB /* WorldOfPayBackApp.swift in Sources */,

@@ -25,5 +25,29 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
         self.apiManager = apiManager
     }
 
+    func fetchTransactions() async {
+        do {
+            let transactionItems: TransactionModel = try await apiManager.makeRequest(endpoint: .transactions)
+            Task { @MainActor in
+                transactions = transactionItems.items.compactMap {
+                    TransactionCardModel(
+                        bookingDate: convertDate($0.transactionDetail.bookingDate),
+                        partnerName: $0.partnerDisplayName,
+                        transactioDescription: $0.transactionDetail.description ?? "",
+                        value: $0.transactionDetail.value
+                    )
+                }
 
+            }
+        } catch {
+            debugPrint(error.localizedDescription) //TODO: error handling
+        }
+    }
+}
+
+private extension TransactionsHistoryPageViewModel {
+    func convertDate(_ dateString: String?) -> String {
+        guard let dateString else { return "N/A" }
+        return UniversalFormatter.shared.getShortDateFormat(from: dateString)
+    }
 }

@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct PBErrorMessageView: View {
-    private var message: String
+    @StateObject private var viewModel: PBErrorHandlingViewModel
+    @State private var message: String = ""
     private var showTapToRefresh: Bool
     private var tapOnRefreshAction: (() -> Void)?
 
     init(
-        message: String = "",
+        viewModel: PBErrorHandlingViewModel,
         showTapToRefresh: Bool = false
     ) {
-        self.message = message
+        _viewModel = StateObject(wrappedValue: viewModel)
         self.showTapToRefresh = showTapToRefresh
     }
 
@@ -58,6 +59,10 @@ struct PBErrorMessageView: View {
         .background {
             Color(pbAsset: .errorMessageRed)
         }
+        .onAppear {
+            viewModel.setErrorView()
+            message = viewModel.errorMessage
+        }
     }
 }
 
@@ -78,5 +83,7 @@ private extension PBErrorMessageView {
 }
 
 #Preview {
-    PBErrorMessageView(message: "Unknown error", showTapToRefresh: true)
+    PBErrorMessageView(
+        viewModel: .init(error: .responseError(description: .init(description: "Response Error", code: nil))),
+        showTapToRefresh: true)
 }

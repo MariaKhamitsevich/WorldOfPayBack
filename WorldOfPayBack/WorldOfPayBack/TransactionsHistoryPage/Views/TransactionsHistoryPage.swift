@@ -15,15 +15,19 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager>: View 
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                navigationBar
-                filterView
-                transactionsList
+        ZStack {
+            NavigationView {
+                VStack {
+                    navigationBar
+                    filterView
+                    transactionsList
+                }
             }
-        }
-        .task {
-            await runTasks()
+            .task {
+                await runTasks()
+            }
+
+            errorView
         }
     }
 
@@ -76,6 +80,13 @@ private extension TransactionsHistoryPage {
 
     func transactionCardCellView(model: TransactionCardModel) -> some View {
         TransactionCardCell(viewModel: TransactionCardViewModel(transactionCardModel: model))
+    }
+
+    @ViewBuilder
+    var errorView: some View {
+        if let error = viewModel.loadingError {
+            PBErrorMessageView(viewModel: PBErrorHandlingViewModel(error:error))
+        }
     }
 }
 

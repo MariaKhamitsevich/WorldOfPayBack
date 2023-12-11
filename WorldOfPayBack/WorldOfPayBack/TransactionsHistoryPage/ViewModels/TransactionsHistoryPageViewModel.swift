@@ -11,6 +11,8 @@ protocol TransactionsHistoryPageManager: ObservableObject {
     var transactions: [TransactionCardModel] { get }
     var filteredTransactions: [TransactionCardModel] { get }
     var availableCategories: [Int] { get }
+    var loadingStatus: LoadingStatus { get }
+    var loadingError: NetworkError? { get }
     func fetchTransactions() async
     func filterTransactions(filterRule: FilterType)
 }

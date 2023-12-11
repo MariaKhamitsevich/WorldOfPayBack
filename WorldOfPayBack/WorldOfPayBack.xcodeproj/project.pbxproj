@@ -47,6 +47,7 @@
 		4C6FE21C2B27503500CDAA52 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE21B2B27503500CDAA52 /* Color+Extension.swift */; };
 		4C6FE21E2B2751BB00CDAA52 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE21D2B2751BB00CDAA52 /* LoadingStatus.swift */; };
 		4C6FE2202B27532D00CDAA52 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE21F2B27532D00CDAA52 /* ErrorResponse.swift */; };
+		4C6FE2232B27564200CDAA52 /* PBErrorHandlingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE2222B27564200CDAA52 /* PBErrorHandlingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		4C6FE21B2B27503500CDAA52 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		4C6FE21D2B2751BB00CDAA52 /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
 		4C6FE21F2B27532D00CDAA52 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		4C6FE2222B27564200CDAA52 /* PBErrorHandlingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBErrorHandlingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				4C6FE2192B274F8200CDAA52 /* PBErrorMessageView.swift */,
+				4C6FE2222B27564200CDAA52 /* PBErrorHandlingViewModel.swift */,
 			);
 			path = ErrorHandling;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				4C4A7EE42B265CAA005AA0B3 /* Image+Extension.swift in Sources */,
 				4C6F51D22B247A510087DCFB /* URLQueryItem+Extension.swift in Sources */,
 				4C6FE21C2B27503500CDAA52 /* Color+Extension.swift in Sources */,
+				4C6FE2232B27564200CDAA52 /* PBErrorHandlingViewModel.swift in Sources */,
 				4C6F51DB2B2493AC0087DCFB /* PBNetworkMonitorService.swift in Sources */,
 				4C4A7EE02B265847005AA0B3 /* TransactionDetailsPageViewModel.swift in Sources */,
 			);

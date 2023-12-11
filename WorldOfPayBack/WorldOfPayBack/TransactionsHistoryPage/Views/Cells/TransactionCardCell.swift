@@ -23,16 +23,23 @@ struct TransactionCardCell: View {
 
                 Spacer()
 
-                Text(viewModel.transactionValueText)
+                Text(viewModel.transactionCardModel.value.transactionValueText)
                     .bold()
                     .font(.system(size: 18))
             }
 
             HStack {
                 VStack(alignment: .leading) {
-                    Text(viewModel.transactionCardModel.partnerName)
-                        .bold()
-                        .font(.system(size: 16))
+                    HStack {
+                        Text(viewModel.transactionCardModel.partnerName)
+                            .bold()
+                            .font(.system(size: 16))
+
+                        Spacer()
+
+                        Text("\(Constants.category) \(viewModel.transactionCardModel.category)")
+                            .font(.system(size: 14))
+                    }
                     Text(viewModel.transactionCardModel.transactioDescription)
                         .multilineTextAlignment(.leading)
                         .lineLimit(1)
@@ -54,6 +61,11 @@ struct TransactionCardCell: View {
     }
 }
 
+private extension TransactionCardCell {
+    enum Constants {
+        static let category = "Category"
+    }
+}
 struct TransactionCardCell_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPhone 14 Pro Max", "iPhone SE (3rd generation)"], id: \.self) { deviceName in

@@ -15,10 +15,12 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager>: View 
     }
 
     var body: some View {
-        VStack {
-            navigationBar
-            filterView
-            transactionsList
+        NavigationView {
+            VStack {
+                navigationBar
+                filterView
+                transactionsList
+            }
         }
         .task {
             await runTasks()
@@ -52,9 +54,21 @@ private extension TransactionsHistoryPage {
 
     var transactionsList: some View {
         List(viewModel.filteredTransactions, id: \.bookingDate) { transaction in
-            transactionCardCellView(model: transaction)
-                .listRowSeparator(.hidden)
-                .listRowInsets(.init(top: 2, leading: 8, bottom: 2, trailing: 8))
+            NavigationLink {
+                TransactionDetailsPage(
+                    viewModel: TransactionDetailsPageViewModel(
+                        transactionCardModel: transaction
+                    )
+                )
+                .repeatButtonHandler {
+                    debugPrint("Operation repeating")
+                }
+            } label: {
+                transactionCardCellView(model: transaction)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(.init(top: 2, leading: 8, bottom: 2, trailing: 8))
+            }
+
         }
         
         .listStyle(.plain)

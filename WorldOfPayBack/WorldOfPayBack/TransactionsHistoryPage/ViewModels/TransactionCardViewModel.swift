@@ -10,10 +10,6 @@ import Foundation
 final class TransactionCardViewModel {
     let transactionCardModel: TransactionCardModel
 
-    var transactionValueText: String {
-        "\(transactionCardModel.value.amount) \(transactionCardModel.value.currency.rawValue.uppercased())"
-    }
-
     init(transactionCardModel: TransactionCardModel) {
         self.transactionCardModel = transactionCardModel
     }

@@ -10,15 +10,11 @@ import SwiftUI
 struct PBErrorMessageView: View {
     @StateObject private var viewModel: PBErrorHandlingViewModel
     @State private var message: String = ""
-    private var showTapToRefresh: Bool
+    @State private var showTapToRefresh: Bool = false
     private var tapOnRefreshAction: (() -> Void)?
 
-    init(
-        viewModel: PBErrorHandlingViewModel,
-        showTapToRefresh: Bool = false
-    ) {
+    init(viewModel: PBErrorHandlingViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.showTapToRefresh = showTapToRefresh
     }
 
     var body: some View {
@@ -62,9 +58,11 @@ struct PBErrorMessageView: View {
         .onAppear {
             viewModel.setErrorView()
             message = viewModel.errorMessage
+            showTapToRefresh = viewModel.showTapToRefresh
         }
         .onChange(of: viewModel.errorMessage) { newValue in
             message = newValue
+            showTapToRefresh = viewModel.showTapToRefresh
         }
     }
 }
@@ -87,6 +85,5 @@ private extension PBErrorMessageView {
 
 #Preview {
     PBErrorMessageView(
-        viewModel: .init(error: .responseError(description: .init(description: "Response Error", code: nil))),
-        showTapToRefresh: true)
+        viewModel: .init(error: .responseError(description: .init(description: "Response Error", code: nil))))
 }

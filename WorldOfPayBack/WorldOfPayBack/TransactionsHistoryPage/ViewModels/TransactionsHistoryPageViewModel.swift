@@ -35,11 +35,14 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
         self.apiManager = apiManager
     }
 
+    @MainActor
     func fetchTransactions() async {
         loadingStatus = .loading
+        transactions.removeAll()
+        filteredTransactions.removeAll()
         do {
             let transactionItems: TransactionModel = try await apiManager.makeRequest(endpoint: .transactions)
-            Task { @MainActor in
+            Task {
                 transactions = transactionItems.items.compactMap {
                     TransactionCardModel(
                         bookingDate: convertFromDateString($0.transactionDetail.bookingDate),
@@ -52,6 +55,7 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
                 getAvailableCategories(from: transactionItems)
                 filterTransactions(filterRule: .dateNewest)
                 loadingStatus = .success
+                loadingError = nil
             }
         } catch (let error) {
             loadingStatus = .failure

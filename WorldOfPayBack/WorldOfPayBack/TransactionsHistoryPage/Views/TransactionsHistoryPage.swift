@@ -22,11 +22,18 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager, Networ
     var body: some View {
         Group {
             if networkMonitor.isConnected {
-                NavigationView {
+                if viewModel.loadingError != nil {
                     VStack {
                         navigationBar
-                        filterView
-                        transactionsList
+                        errorView
+                    }
+                } else {
+                    NavigationView {
+                        VStack {
+                            navigationBar
+                            filterView
+                            transactionsList
+                        }
                     }
                 }
             } else {
@@ -37,6 +44,11 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager, Networ
             }
         }
         .task {
+            if networkMonitor.isConnected {
+                await runTasks()
+            }
+        }
+        .refreshable {
             if networkMonitor.isConnected {
                 await runTasks()
             }

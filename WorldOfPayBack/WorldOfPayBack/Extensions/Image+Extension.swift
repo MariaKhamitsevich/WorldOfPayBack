@@ -19,6 +19,7 @@ extension Image {
 
 enum PBAssetImage: String, PBAssetDisplayable {
     case clock
+    case currency
 
     public var image: SwiftUI.Image { .init(pbAsset: self) }
 

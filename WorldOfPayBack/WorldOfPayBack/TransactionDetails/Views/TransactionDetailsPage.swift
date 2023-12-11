@@ -41,10 +41,10 @@ private extension TransactionDetailsPage {
 
     var detailsList: some View {
         VStack {
-            TransactionInfoView(leadingText: Constants.transactionTime, trailingText: viewModel.transactionCardModel.bookingDate, isShowDivider: true)
+            TransactionInfoView(leadingText: Constants.transactionTime, trailingText: viewModel.transactionCardModel.bookingDate, isShowDivider: true, trailingImageViewText: Constants.clock)
             TransactionInfoView(leadingText: Constants.partnerName, trailingText: viewModel.transactionCardModel.partnerName, isShowDivider: true)
             TransactionInfoView(leadingText: Constants.category, trailingText: "\(viewModel.transactionCardModel.category)", isShowDivider: true)
-            TransactionInfoView(leadingText: Constants.amount, trailingText: viewModel.transactionCardModel.value.transactionValueText, isShowDivider: true)
+            TransactionInfoView(leadingText: Constants.amount, trailingText: viewModel.transactionCardModel.value.transactionValueText, isShowDivider: true, trailingImageViewText: Constants.currency)
             TransactionInfoView(leadingText: Constants.balanceAfterOperation, trailingText: Constants.balanceAfterOperation, isShowDivider: true)
             TransactionInfoView(leadingText: Constants.transactionDescription, trailingText: viewModel.transactionCardModel.transactioDescription, isShowDivider: true)
         }
@@ -107,6 +107,12 @@ private extension TransactionDetailsPage {
         }
         static var repeatOperation: String {
             "Repeat Operation"
+        }
+        static var clock: String {
+            "clock"
+        }
+        static var currency: String {
+            "currency"
         }
     }
 }

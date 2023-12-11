@@ -7,19 +7,31 @@
 
 import Foundation
 
-enum ErrorResponse: Error, Decodable {
-    case urlResponse
+struct NetworkErrorParameters {
+    let title: String?
+    let description: String
+    let code: Int?
+    let errorType: String?
 
-    var title: String {
-        ""
+    init(
+        title: String? = nil,
+        description: String,
+        code: Int?,
+        errorType: String? = nil
+    ) {
+        self.title = title
+        self.description = description
+        self.code = code
+        self.errorType = errorType
     }
 }
 
 enum NetworkError: Error {
-    case urlRequestError
-    case responseError
+    case urlRequestError(description: NetworkErrorParameters)
+    case responseError(description: NetworkErrorParameters)
     case dataParsingError
     case noDataError
+    case unknownError
 }
 
 protocol NetworkManagering {
@@ -53,8 +65,27 @@ private extension NetworkManager {
     }
 
     func decodeError(data: Data, statusCode: Int?, responseDescription: String) async throws -> Data {
-        // TODO: add decoder for error
-        throw try JSONDecoder().decode(ErrorResponse.self, from: data as Foundation.Data)
+        do {
+            let error = try JSONDecoder().decode(ErrorResponse.self, from: data as Foundation.Data)
+            let errorParameters: NetworkErrorParameters
+            switch error {
+            case let .payment(paymentError):
+                errorParameters = NetworkErrorParameters(title: paymentError.title,
+                                                         description: paymentError.message,
+                                                         code: statusCode,
+                                                         errorType: paymentError.errorType)
+            case let .exception(exceptionResponse):
+                errorParameters = NetworkErrorParameters(title: exceptionResponse.title,
+                                                         description: exceptionResponse.message,
+                                                         code: statusCode,
+                                                         errorType: exceptionResponse.error)
+            }
+            throw NetworkError.responseError(description: errorParameters)
+        }
+        catch {
+            let errorParameters = NetworkErrorParameters(description: responseDescription, code: statusCode)
+            throw NetworkError.responseError(description: errorParameters)
+        }
     }
 
     func decodeData<T: Decodable>(data: Foundation.Data) async throws -> T {

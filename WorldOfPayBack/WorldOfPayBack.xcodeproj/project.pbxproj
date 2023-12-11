@@ -43,6 +43,10 @@
 		4C6F51E32B24C4F00087DCFB /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51E22B24C4F00087DCFB /* NavigationBar.swift */; };
 		4C6F51E72B24C6490087DCFB /* TransactionsHistoryPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51E62B24C6490087DCFB /* TransactionsHistoryPageViewModel.swift */; };
 		4C6F51EA2B24C8440087DCFB /* TransactionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F51E92B24C8440087DCFB /* TransactionCardModel.swift */; };
+		4C6FE21A2B274F8200CDAA52 /* PBErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE2192B274F8200CDAA52 /* PBErrorMessageView.swift */; };
+		4C6FE21C2B27503500CDAA52 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE21B2B27503500CDAA52 /* Color+Extension.swift */; };
+		4C6FE21E2B2751BB00CDAA52 /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE21D2B2751BB00CDAA52 /* LoadingStatus.swift */; };
+		4C6FE2202B27532D00CDAA52 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6FE21F2B27532D00CDAA52 /* ErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +88,10 @@
 		4C6F51E22B24C4F00087DCFB /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		4C6F51E62B24C6490087DCFB /* TransactionsHistoryPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsHistoryPageViewModel.swift; sourceTree = "<group>"; };
 		4C6F51E92B24C8440087DCFB /* TransactionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCardModel.swift; sourceTree = "<group>"; };
+		4C6FE2192B274F8200CDAA52 /* PBErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBErrorMessageView.swift; sourceTree = "<group>"; };
+		4C6FE21B2B27503500CDAA52 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		4C6FE21D2B2751BB00CDAA52 /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
+		4C6FE21F2B27532D00CDAA52 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +116,7 @@
 		4C4A7EC42B24CED4005AA0B3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4C6FE2212B27533300CDAA52 /* Errors */,
 				4C4A7EC52B24CEE7005AA0B3 /* TransactionModel.swift */,
 			);
 			path = Models;
@@ -118,6 +127,7 @@
 			children = (
 				4C4A7EC82B25BBEC005AA0B3 /* UniversalFormatter.swift */,
 				4C4A7EE52B265D54005AA0B3 /* PBAssetDisplayable.swift */,
+				4C6FE21D2B2751BB00CDAA52 /* LoadingStatus.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -191,6 +201,7 @@
 		4C6F51AF2B2462B90087DCFB /* WorldOfPayBack */ = {
 			isa = PBXGroup;
 			children = (
+				4C6FE2182B274F3C00CDAA52 /* ErrorHandling */,
 				4C6F51BF2B2462EF0087DCFB /* HostingView */,
 				4C6F51DC2B24BE3F0087DCFB /* TransactionsHistoryPage */,
 				4C4A7ED92B2657F6005AA0B3 /* TransactionDetails */,
@@ -255,6 +266,7 @@
 				4C4A7EC22B24CE3E005AA0B3 /* Bundle+Extension.swift */,
 				4C4A7ED52B26221B005AA0B3 /* Int+Extension.swift */,
 				4C4A7EE32B265CAA005AA0B3 /* Image+Extension.swift */,
+				4C6FE21B2B27503500CDAA52 /* Color+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,6 +327,22 @@
 				4C4A7ED72B26223E005AA0B3 /* FilterType.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4C6FE2182B274F3C00CDAA52 /* ErrorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				4C6FE2192B274F8200CDAA52 /* PBErrorMessageView.swift */,
+			);
+			path = ErrorHandling;
+			sourceTree = "<group>";
+		};
+		4C6FE2212B27533300CDAA52 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				4C6FE21F2B27532D00CDAA52 /* ErrorResponse.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,6 +423,7 @@
 				4C6F51D92B24830C0087DCFB /* BuildEnvironment.swift in Sources */,
 				4C4A7ED22B25E833005AA0B3 /* FilterView.swift in Sources */,
 				4C6F51C82B24772F0087DCFB /* URLConfigurator.swift in Sources */,
+				4C6FE21E2B2751BB00CDAA52 /* LoadingStatus.swift in Sources */,
 				4C4A7ED42B261E62005AA0B3 /* FilterOptionsView.swift in Sources */,
 				4C6F51EA2B24C8440087DCFB /* TransactionCardModel.swift in Sources */,
 				4C4A7ED82B26223E005AA0B3 /* FilterType.swift in Sources */,
@@ -404,9 +433,11 @@
 				4C4A7ECE2B25CBC6005AA0B3 /* TransactionCardViewModel.swift in Sources */,
 				4C4A7ED02B25D6AD005AA0B3 /* MockApiManager.swift in Sources */,
 				4C6F51C62B2477230087DCFB /* ApiManager.swift in Sources */,
+				4C6FE2202B27532D00CDAA52 /* ErrorResponse.swift in Sources */,
 				4C4A7EE22B265A1B005AA0B3 /* TransactionInfoView.swift in Sources */,
 				4C4A7EC62B24CEE7005AA0B3 /* TransactionModel.swift in Sources */,
 				4C4A7EDE2B265828005AA0B3 /* TransactionDetailsPage.swift in Sources */,
+				4C6FE21A2B274F8200CDAA52 /* PBErrorMessageView.swift in Sources */,
 				4C6F51DE2B24BE680087DCFB /* TransactionsHistoryPage.swift in Sources */,
 				4C4A7EC92B25BBEC005AA0B3 /* UniversalFormatter.swift in Sources */,
 				4C6F51C42B24770C0087DCFB /* NetworkManager.swift in Sources */,
@@ -419,6 +450,7 @@
 				4C4A7ECC2B25C3A6005AA0B3 /* TransactionCardCell.swift in Sources */,
 				4C4A7EE42B265CAA005AA0B3 /* Image+Extension.swift in Sources */,
 				4C6F51D22B247A510087DCFB /* URLQueryItem+Extension.swift in Sources */,
+				4C6FE21C2B27503500CDAA52 /* Color+Extension.swift in Sources */,
 				4C6F51DB2B2493AC0087DCFB /* PBNetworkMonitorService.swift in Sources */,
 				4C4A7EE02B265847005AA0B3 /* TransactionDetailsPageViewModel.swift in Sources */,
 			);

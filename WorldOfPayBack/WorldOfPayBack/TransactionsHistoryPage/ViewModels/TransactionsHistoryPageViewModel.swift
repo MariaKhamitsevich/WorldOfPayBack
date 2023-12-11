@@ -20,6 +20,8 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
     @Published private(set) var transactions: [TransactionCardModel] = []
     @Published private(set) var filteredTransactions: [TransactionCardModel] = []
     @Published private(set) var availableCategories: [Int] = []
+    @Published private(set) var loadingStatus: LoadingStatus = .success
+    @Published private(set) var loadingError: NetworkError?
 
     private var currentDate: Date {
         Date()
@@ -32,6 +34,7 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
     }
 
     func fetchTransactions() async {
+        loadingStatus = .loading
         do {
             let transactionItems: TransactionModel = try await apiManager.makeRequest(endpoint: .transactions)
             Task { @MainActor in
@@ -46,10 +49,11 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
                 }
                 getAvailableCategories(from: transactionItems)
                 filterTransactions(filterRule: .dateNewest)
-
+                loadingStatus = .success
             }
-        } catch {
-            debugPrint(error.localizedDescription) //TODO: error handling
+        } catch (let error) {
+            loadingStatus = .failure
+            loadingError = error as? NetworkError ?? .unknownError
         }
     }
 

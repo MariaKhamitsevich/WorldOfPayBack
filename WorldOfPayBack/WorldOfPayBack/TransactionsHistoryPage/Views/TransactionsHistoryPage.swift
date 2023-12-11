@@ -7,27 +7,39 @@
 
 import SwiftUI
 
-struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager>: View {
+struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager, NetworkMonitor: NetworkMonitorService>: View {
     @StateObject private var viewModel: ViewModel
+    @StateObject private var networkMonitor: NetworkMonitor
 
-    init(viewModel: ViewModel) {
+    init(
+        viewModel: ViewModel,
+        networkMonitor: NetworkMonitor = PBNetworkMonitorService.shared
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        _networkMonitor = StateObject(wrappedValue: networkMonitor)
     }
 
     var body: some View {
-        ZStack {
-            NavigationView {
+        Group {
+            if networkMonitor.isConnected {
+                NavigationView {
+                    VStack {
+                        navigationBar
+                        filterView
+                        transactionsList
+                    }
+                }
+            } else {
                 VStack {
                     navigationBar
-                    filterView
-                    transactionsList
+                    errorView
                 }
             }
-            .task {
+        }
+        .task {
+            if networkMonitor.isConnected {
                 await runTasks()
             }
-
-            errorView
         }
     }
 
@@ -82,10 +94,15 @@ private extension TransactionsHistoryPage {
         TransactionCardCell(viewModel: TransactionCardViewModel(transactionCardModel: model))
     }
 
-    @ViewBuilder
     var errorView: some View {
-        if let error = viewModel.loadingError {
-            PBErrorMessageView(viewModel: PBErrorHandlingViewModel(error:error))
+        VStack {
+            PBErrorMessageView(viewModel: PBErrorHandlingViewModel(error: viewModel.loadingError))
+                .onTapToRefresh {
+                    Task {
+                        await runTasks()
+                    }
+                }
+            Spacer()
         }
     }
 }

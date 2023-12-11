@@ -10,17 +10,18 @@ import Combine
 
 public class PBErrorHandlingViewModel: ObservableObject {
 
-    @Published private var error: NetworkError
+    @Published private var error: NetworkError?
     @Published private(set) var showTapToRefresh = false
     @Published private(set) var errorMessage: String = ""
 
-    init(error: NetworkError) {
+    init(error: NetworkError?) {
         self.error = error
     }
 
     func setErrorView() {
-        guard self.errorMessage.isEmpty else { return }
         if PBNetworkMonitorService.shared.isConnected {
+            guard let error,
+                  self.errorMessage.isEmpty else { return }
             switch error {
                 case .urlRequestError:
                     self.errorMessage = Constants.errorOccured

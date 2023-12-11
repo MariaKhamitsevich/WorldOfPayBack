@@ -63,6 +63,9 @@ struct PBErrorMessageView: View {
             viewModel.setErrorView()
             message = viewModel.errorMessage
         }
+        .onChange(of: viewModel.errorMessage) { newValue in
+            message = newValue
+        }
     }
 }
 

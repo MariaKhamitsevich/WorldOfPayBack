@@ -20,20 +20,24 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager, Networ
     }
 
     var body: some View {
-        Group {
+        NavigationView {
             if networkMonitor.isConnected {
-                if viewModel.loadingError != nil {
+                if viewModel.isLoading {
+                    VStack {
+                        navigationBar
+                        ProgressView()
+                            .frame(maxHeight: .infinity)
+                    }
+                } else if viewModel.loadingError != nil {
                     VStack {
                         navigationBar
                         errorView
                     }
                 } else {
-                    NavigationView {
-                        VStack {
-                            navigationBar
-                            filterView
-                            transactionsList
-                        }
+                    VStack {
+                        navigationBar
+                        filterView
+                        transactionsList
                     }
                 }
             } else {

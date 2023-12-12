@@ -12,7 +12,11 @@ final class MockApiManager<API: ApiRequest>: ApiManagering {
     typealias API = API
 
     func makeRequest<T>(endpoint: API) async throws -> T where T : Decodable {
+        // Simulate a delay of 1-2 seconds
+        try await Task.sleep(nanoseconds: 2_000_000_000 * UInt64.random(in: 1...2))
+
         try randomThrowingError()
+
         if let path = Bundle.payBack.path(forResource: "PBTransactions", ofType: "json") {
                 do {
                     let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)

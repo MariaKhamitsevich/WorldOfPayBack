@@ -11,6 +11,9 @@ protocol TransactionsHistoryPageManager: ObservableObject {
     var transactions: [TransactionCardModel] { get }
     var filteredTransactions: [TransactionCardModel] { get }
     var availableCategories: [Int] { get }
+    var loadingStatus: LoadingStatus { get }
+    var loadingError: NetworkError? { get }
+    var isLoading: Bool { get }
     func fetchTransactions() async
     func filterTransactions(filterRule: FilterType)
 }
@@ -20,6 +23,9 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
     @Published private(set) var transactions: [TransactionCardModel] = []
     @Published private(set) var filteredTransactions: [TransactionCardModel] = []
     @Published private(set) var availableCategories: [Int] = []
+    @Published private(set) var loadingStatus: LoadingStatus = .loading
+    @Published private(set) var isLoading: Bool = true
+    @Published private(set) var loadingError: NetworkError?
 
     private var currentDate: Date {
         Date()
@@ -29,12 +35,17 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
         apiManager: any ApiManagering<PBTransactionsApiRequest> = MockApiManager() // TODO: replace mock by ApiManager(networkManger: NetworkManager(),  urlConfigurator: PBURLConfigurator())
     ) {
         self.apiManager = apiManager
+        setupPublished()
     }
 
+    @MainActor
     func fetchTransactions() async {
+        loadingStatus = .loading
+        transactions.removeAll()
+        filteredTransactions.removeAll()
         do {
             let transactionItems: TransactionModel = try await apiManager.makeRequest(endpoint: .transactions)
-            Task { @MainActor in
+            Task {
                 transactions = transactionItems.items.compactMap {
                     TransactionCardModel(
                         bookingDate: convertFromDateString($0.transactionDetail.bookingDate),
@@ -46,10 +57,14 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
                 }
                 getAvailableCategories(from: transactionItems)
                 filterTransactions(filterRule: .dateNewest)
-
+                loadingStatus = .success
+                loadingError = nil
             }
-        } catch {
-            debugPrint(error.localizedDescription) //TODO: error handling
+        } catch (let error) {
+            Task {
+                loadingStatus = .failure
+                loadingError = error as? NetworkError ?? .unknownError
+            }
         }
     }
 
@@ -62,6 +77,14 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
             case .dateOldest:
                 filteredTransactions = sortTransitionsByDate(items: transactions, increasing: false)
         }
+    }
+}
+
+private extension TransactionsHistoryPageViewModel {
+    func setupPublished() {
+        $loadingStatus
+            .map { $0 == .loading }
+            .assign(to: &$isLoading)
     }
 }
 

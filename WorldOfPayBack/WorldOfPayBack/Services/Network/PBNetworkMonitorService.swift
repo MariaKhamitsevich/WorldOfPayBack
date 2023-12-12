@@ -8,12 +8,16 @@
 import Foundation
 import Network
 
-final class PBNetworkMonitorService: ObservableObject {
-    static let shared = PBNetworkMonitorService()
+protocol NetworkMonitorService: ObservableObject {
+    var isConnected: Bool { get }
+}
+
+final class PBNetworkMonitorService: NetworkMonitorService {
+    static var shared = PBNetworkMonitorService()
 
     private let networkMonitor = NWPathMonitor()
     private let queue = DispatchQueue(label: Constants.networkConnectivityQueue)
-    @Published private(set) var isConnected = true
+    @Published private(set) var isConnected = false
 
     private init() {
         startMonitor()

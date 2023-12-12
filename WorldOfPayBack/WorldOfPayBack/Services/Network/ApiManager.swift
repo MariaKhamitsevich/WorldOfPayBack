@@ -27,7 +27,7 @@ final class ApiManager<API: ApiRequest>: ApiManagering {
 
     func makeRequest<T: Decodable>(endpoint: API) async throws -> T {
         let request = urlConfigurator.makeRequest(for: endpoint)
-        guard let request else { throw NetworkError.urlRequestError }
+        guard let request else { throw NetworkError.urlRequestError(description: .init(description: "Request failed", code: nil)) }
         return try await networkManger.makeRequest(urlRequest: request)
     }
 }

@@ -7,23 +7,55 @@
 
 import SwiftUI
 
-struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager>: View {
+struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager, NetworkMonitor: NetworkMonitorService>: View {
     @StateObject private var viewModel: ViewModel
+    @StateObject private var networkMonitor: NetworkMonitor
 
-    init(viewModel: ViewModel) {
+    init(
+        viewModel: ViewModel,
+        networkMonitor: NetworkMonitor = PBNetworkMonitorService.shared
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        _networkMonitor = StateObject(wrappedValue: networkMonitor)
     }
 
     var body: some View {
         NavigationView {
-            VStack {
-                navigationBar
-                filterView
-                transactionsList
+            if networkMonitor.isConnected {
+                if viewModel.isLoading {
+                    VStack {
+                        navigationBar
+                        ProgressView()
+                            .frame(maxHeight: .infinity)
+                    }
+                } else if viewModel.loadingError != nil {
+                    VStack {
+                        navigationBar
+                        errorView
+                    }
+                } else {
+                    VStack {
+                        navigationBar
+                        filterView
+                        transactionsList
+                    }
+                }
+            } else {
+                VStack {
+                    navigationBar
+                    errorView
+                }
             }
         }
         .task {
-            await runTasks()
+            if networkMonitor.isConnected {
+                await runTasks()
+            }
+        }
+        .refreshable {
+            if networkMonitor.isConnected {
+                await runTasks()
+            }
         }
     }
 
@@ -76,6 +108,18 @@ private extension TransactionsHistoryPage {
 
     func transactionCardCellView(model: TransactionCardModel) -> some View {
         TransactionCardCell(viewModel: TransactionCardViewModel(transactionCardModel: model))
+    }
+
+    var errorView: some View {
+        VStack {
+            PBErrorMessageView(viewModel: PBErrorHandlingViewModel(error: viewModel.loadingError))
+                .onTapToRefresh {
+                    Task {
+                        await runTasks()
+                    }
+                }
+            Spacer()
+        }
     }
 }
 

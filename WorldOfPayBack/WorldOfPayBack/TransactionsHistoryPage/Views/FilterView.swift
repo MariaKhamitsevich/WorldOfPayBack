@@ -48,7 +48,6 @@ struct FilterView: View {
         }
         .padding()
         .background {
-
             Color.white
                 .onTapGesture {
                     isFilterSheetPresented = false

@@ -99,5 +99,10 @@ private extension TransactionInfoView {
 }
 
 #Preview {
-    TransactionInfoView(leadingText: "Date", trailingText: "Feb 4, 2022, 10:59 AM", imageViewText: "clock", trailingImageViewText: "clock")
+    TransactionInfoView(
+        leadingText: "Date",
+        trailingText: "Feb 4, 2022, 10:59 AM",
+        imageViewText: "clock",
+        trailingImageViewText: "clock"
+    )
 }

@@ -20,8 +20,6 @@ enum ErrorResponse: Decodable {
         case title
         case error
         case message
-        case timestamp
-        case data
     }
 
     init(from decoder: Decoder) throws {
@@ -33,16 +31,15 @@ enum ErrorResponse: Decodable {
             let code = errorResponse.first?.code
             let title = errorResponse.first?.title
             let message = errorResponse.first?.message ?? "N/A"
-            let errorType = errorResponse.first?.errorType ?? key
 
-            self = .payment(PaymentErrorResponse(code: code, title: title, message: message, errorType: errorType))
+            self = .payment(PaymentErrorResponse(code: code, title: title, message: message))
             return
         }
 
         if let exceptionContainer = try? decoder.container(keyedBy: ExceptionDataKeys.self) {
             let title = try exceptionContainer.decodeIfPresent(String.self, forKey: .title)
             let error = try exceptionContainer.decodeIfPresent(String.self, forKey: .error)
-            let message = try exceptionContainer.decode(String.self, forKey: .message)
+            let message = try exceptionContainer.decodeIfPresent(String.self, forKey: .message) ?? "N/A"
 
             self = .exception(ExceptionResponse(title: title, error: error, message: message))
             return
@@ -59,7 +56,6 @@ struct PaymentErrorResponse: Decodable {
     let code: String?
     let title: String?
     let message: String
-    let errorType: String?
 }
 
 

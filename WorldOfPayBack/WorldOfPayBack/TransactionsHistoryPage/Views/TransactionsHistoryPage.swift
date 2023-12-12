@@ -2,7 +2,7 @@
 //  TransactionsHistoryPage.swift
 //  WorldOfPayBack
 //
-//  Created by Мария on 09/12/2023.
+//  Created by Maria on 09/12/2023.
 //
 
 import SwiftUI
@@ -94,7 +94,7 @@ private extension TransactionsHistoryPage {
                     )
                 )
                 .repeatButtonHandler {
-                    debugPrint("Operation repeating")
+                    debugPrint("Operation repeating") // TODO: add repeating logic
                 }
             } label: {
                 transactionCardCellView(model: transaction)

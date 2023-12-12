@@ -13,7 +13,7 @@ final class MockApiManager<API: ApiRequest>: ApiManagering {
 
     func makeRequest<T>(endpoint: API) async throws -> T where T : Decodable {
         // Simulate a delay of 1-2 seconds
-        try await Task.sleep(nanoseconds: 2_000_000_000 * UInt64.random(in: 1...2))
+        try await Task.sleep(nanoseconds: 1_000_000_000 * UInt64.random(in: 1...2))
 
         try randomThrowingError()
 
@@ -33,7 +33,7 @@ final class MockApiManager<API: ApiRequest>: ApiManagering {
     }
 
     private func randomThrowingError() throws {
-        let randomNumber = Int.random(in: 1...5)
+        let randomNumber = Int.random(in: 1...10)
 
         switch randomNumber {
         case 1:

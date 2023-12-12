@@ -37,6 +37,7 @@ struct TransactionsHistoryPage<ViewModel: TransactionsHistoryPageManager, Networ
                     VStack {
                         navigationBar
                         filterView
+                        totalAmountView
                         transactionsList
                     }
                 }
@@ -121,12 +122,23 @@ private extension TransactionsHistoryPage {
             Spacer()
         }
     }
+
+    var totalAmountView: some View {
+        HStack {
+            Text("\(Constants.total):\(viewModel.totalAmountText)")
+            Spacer()
+        }
+        .padding(.horizontal)
+    }
 }
 
 private extension TransactionsHistoryPage {
     enum Constants {
         static var transactionHistory: String {
             "Transactions History"
+        }
+        static var total: String {
+            "Total"
         }
     }
 }

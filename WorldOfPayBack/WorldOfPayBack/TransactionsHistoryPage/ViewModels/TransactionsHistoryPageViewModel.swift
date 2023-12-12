@@ -14,6 +14,7 @@ protocol TransactionsHistoryPageManager: ObservableObject {
     var loadingStatus: LoadingStatus { get }
     var loadingError: NetworkError? { get }
     var isLoading: Bool { get }
+    var totalAmountText: String { get }
     func fetchTransactions() async
     func filterTransactions(filterRule: FilterType)
 }
@@ -29,6 +30,14 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
 
     private var currentDate: Date {
         Date()
+    }
+
+    private var currencyTotals: [Currency : Int] {
+        getCurrencyTotals(from: filteredTransactions.compactMap { $0.value })
+    }
+
+    var totalAmountText: String {
+        getCurrencyDescription(from: currencyTotals)
     }
 
     init(
@@ -114,5 +123,31 @@ private extension TransactionsHistoryPageViewModel {
 
     func convertToDate(_ dateString: String?) -> Date? {
         UniversalFormatter.shared.dateFromString(dateString ?? "", format: .shortDate)
+    }
+}
+
+private extension TransactionsHistoryPageViewModel {
+    func getCurrencyTotals(from transactions: [TransactionValue]) -> [Currency: Int] {
+        // Dictionary to store total amounts for each currency
+        var currencyTotals: [Currency: Int] = [:]
+
+        // Calculate totals for each currency
+        for transaction in transactions {
+            let currency = transaction.currency
+            let amount = transaction.amount
+
+            if var total = currencyTotals[currency] {
+                total += amount
+                currencyTotals[currency] = total
+            } else {
+                currencyTotals[currency] = amount
+            }
+        }
+        return currencyTotals
+    }
+
+    func getCurrencyDescription(from currencyTotals: [Currency : Int]) -> String {
+        let summaryText = currencyTotals.reduce("") { $0 + " \($1.value) \($1.key.rawValue.uppercased()),"}
+        return String(summaryText.dropLast())
     }
 }

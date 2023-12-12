@@ -11,18 +11,15 @@ struct NetworkErrorParameters {
     let title: String?
     let description: String
     let code: Int?
-    let errorType: String?
 
     init(
         title: String? = nil,
         description: String,
-        code: Int?,
-        errorType: String? = nil
+        code: Int?
     ) {
         self.title = title
         self.description = description
         self.code = code
-        self.errorType = errorType
     }
 }
 
@@ -72,13 +69,11 @@ private extension NetworkManager {
             case let .payment(paymentError):
                 errorParameters = NetworkErrorParameters(title: paymentError.title,
                                                          description: paymentError.message,
-                                                         code: statusCode,
-                                                         errorType: paymentError.errorType)
+                                                         code: statusCode)
             case let .exception(exceptionResponse):
                 errorParameters = NetworkErrorParameters(title: exceptionResponse.title,
                                                          description: exceptionResponse.message,
-                                                         code: statusCode,
-                                                         errorType: exceptionResponse.error)
+                                                         code: statusCode)
             }
             throw NetworkError.responseError(description: errorParameters)
         }

@@ -32,12 +32,12 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
         Date()
     }
 
-    private var currencyTotals: [Currency : Int] {
+    private var filteredTransactionsCurrencyTotals: [Currency : Int] {
         getCurrencyTotals(from: filteredTransactions.compactMap { $0.value })
     }
 
     var totalAmountText: String {
-        getCurrencyDescription(from: currencyTotals)
+        getCurrencyDescription(from: filteredTransactionsCurrencyTotals)
     }
 
     init(
@@ -50,8 +50,7 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
     @MainActor
     func fetchTransactions() async {
         loadingStatus = .loading
-        transactions.removeAll()
-        filteredTransactions.removeAll()
+        cleanTransactions()
         do {
             let transactionItems: TransactionModel = try await apiManager.makeRequest(endpoint: .transactions)
             Task {
@@ -64,7 +63,9 @@ final class TransactionsHistoryPageViewModel: TransactionsHistoryPageManager {
                         value: $0.transactionDetail.value
                     )
                 }
+                /// get categories to enable filter by categories
                 getAvailableCategories(from: transactionItems)
+                /// apply default filter
                 filterTransactions(filterRule: .dateNewest)
                 loadingStatus = .success
                 loadingError = nil
@@ -95,8 +96,14 @@ private extension TransactionsHistoryPageViewModel {
             .map { $0 == .loading }
             .assign(to: &$isLoading)
     }
+
+    func cleanTransactions() {
+        transactions.removeAll()
+        filteredTransactions.removeAll()
+    }
 }
 
+// MARK: - Filter methods
 private extension TransactionsHistoryPageViewModel {
     func getAvailableCategories(from model: TransactionModel) {
         availableCategories = Array(Set(model.items.map { $0.category }).sorted())
@@ -126,12 +133,13 @@ private extension TransactionsHistoryPageViewModel {
     }
 }
 
+//MARK: - Total amount calculation
 private extension TransactionsHistoryPageViewModel {
     func getCurrencyTotals(from transactions: [TransactionValue]) -> [Currency: Int] {
-        // Dictionary to store total amounts for each currency
+        /// Dictionary to store total amounts for each currency
         var currencyTotals: [Currency: Int] = [:]
 
-        // Calculate totals for each currency
+        /// Calculate totals for each currency
         for transaction in transactions {
             let currency = transaction.currency
             let amount = transaction.amount

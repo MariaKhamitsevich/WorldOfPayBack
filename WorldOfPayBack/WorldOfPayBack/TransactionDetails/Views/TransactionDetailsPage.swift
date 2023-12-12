@@ -118,7 +118,8 @@ private extension TransactionDetailsPage {
 }
 
 #Preview {
-    TransactionDetailsPage(viewModel: TransactionDetailsPageViewModel(
+    TransactionDetailsPage(
+        viewModel: TransactionDetailsPageViewModel(
         transactionCardModel: .init(
                 bookingDate: "Feb 4, 2022, 10:59 AM",
                 partnerName: "Partner name",
